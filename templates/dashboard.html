@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>智能选型系统</title>
+    <style>
+        .dashboard-container {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+        .function-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+        .card {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            text-align: center;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        .card h2 {
+            color: #007bff;
+            margin-bottom: 15px;
+        }
+        .card p {
+            color: #666;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <h1>欢迎回来，{{ session.username }}！</h1>
+        <div class="function-cards">
+            <!-- 产品选型配置 -->
+            <a href="/m_select" class="card">
+                <h2>📦 产品选型配置</h2>
+                <p>创建和管理产品选型配置方案</p>
+            </a>
+
+            <!-- 资料维护 -->
+            <a href="/maintenance" class="card">
+                <h2>🔧 资料维护</h2>
+                <p>管理基础产品数据和配置信息</p>
+            </a>
+
+            <!-- Excel上传 -->
+            <a href="/upload" class="card">
+                <h2>📤 EXCEL资料上传</h2>
+                <p>批量导入产品数据与配置信息</p>
+            </a>
+        </div>
+        <div style="text-align:center; margin-top:30px;">
+            <a href="/logout" style="color:#666; text-decoration:none;">退出登录 →</a>
+        </div>
+    </div>
+</body>
+</html>

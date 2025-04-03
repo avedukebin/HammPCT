@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>500 服务器错误</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            color: #343a40;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+        .error-container {
+            max-width: 600px;
+            padding: 2rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #dc3545;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+        a {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .error-details {
+            background: #f8d7da;
+            color: #721c24;
+            padding: 1rem;
+            border-radius: 4px;
+            margin-top: 1.5rem;
+            font-family: monospace;
+            text-align: left;
+            font-size: 0.9rem;
+            overflow-x: auto;
+        }
+        .error-code {
+            font-size: 0.9rem;
+            color: #6c757d;
+            margin-top: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="error-container">
+        <h1>500</h1>
+        <p>抱歉，服务器处理您的请求时发生了错误。</p>
+        <p><a href="{{ url_for('dashboard') }}">返回首页</a> 或稍后再试</p>
+
+        <!-- 开发环境下显示错误详情 -->
+        {% if config.DEBUG %}
+        <div class="error-details">
+            <strong>错误详情:</strong><br>
+            {{ error }}
+        </div>
+        {% endif %}
+
+        <div class="error-code">错误代码: 500 Internal Server Error</div>
+    </div>
+</body>
+</html>
