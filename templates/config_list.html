@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block title %}所有配置列表{% endblock %}
+
+{% block content %}
+<div style="margin: 20px; background: rgba(255, 255, 255, 0.6); padding: 20px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);"">
+    <h1 style="text-align: center; margin-bottom: 30px;">历史配置列表</h1>
+
+    <div class="pagination">
+        <!-- 上一页按钮 -->
+        <a href="{{ url_for('view_config', page=current_page-1) }}"
+           class="btn {% if current_page == 1 %}disabled{% endif %}">
+            &laquo; 上一页
+        </a>
+
+        <!-- 页码显示 -->
+        <span class="page-info">
+            第 {{ current_page }} 页 / 共 {{ total_pages }} 页
+        </span>
+
+        <!-- 下一页按钮 -->
+        <a href="{{ url_for('view_config', page=current_page + 1) }}"
+           class="btn {% if current_page >= total_pages %}disabled{% endif %}">
+            下一页 &raquo;
+        </a>
+    </div>
+    <div class="summary-info">
+        共 {{ total_pages }} 页 / {{ total_items }} 条记录
+    </div>
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>配置ID</th>
+                <th>折扣率</th>
+                <th>总价(CNY)</th>
+                <th>产品数量</th>
+                <th>创建时间</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for config in configs %}
+            <tr>
+                <td>{{ config.formatted_id }}</td>
+                <td>{{ config.discount }}</td>
+                <td>{{ config.total_price }}</td>
+                <td>{{ config.items_count }}</td>
+                <td>{{ config.created_at }}</td>
+                <td>
+                    <a href="/config/{{ config.formatted_id }}">查看详情</a>
+                </td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="6" style="text-align:center; color:#666;">暂无历史配置</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
